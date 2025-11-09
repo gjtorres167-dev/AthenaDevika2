@@ -11,7 +11,7 @@ body {
 
 header.hero {
     position: relative;
-    background: url('https://images.unsplash.com/photo-1611689030428-4e5b49c7e8a4?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+    background: url(vaibhav-chauhan-vjUzLUx5KvA-unsplash.jpg) center/cover no-repeat;
     height: 65vh;
     display: flex;
     align-items: center;
@@ -86,3 +86,4 @@ footer {
     color: #d3c7a6;
     font-size: 0.9rem;
 }
+
