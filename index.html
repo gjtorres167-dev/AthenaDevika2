@@ -1,51 +1,360 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Athena Devika | The Sweetest Sidekick</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Athena Devika — A Dog's Page</title>
+<meta name="description" content="A one-page site celebrating Athena Devika — German Shepherd x Rottweiler, sidekick, traveler, cuddle-bug." />
+<style>
+  :root{
+    --bg:#fbf9f7;
+    --card:#ffffff;
+    --muted:#6b6b6b;
+    --accent:#8b2b1f; /* deep red, like her coat */
+    --accent-2:#2f4f2f; /* deep green accent */
+    --radius:14px;
+    --maxw:980px;
+    --drop: 0 8px 24px rgba(8,10,15,0.08);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:linear-gradient(180deg,var(--bg),#f2efe9);
+    color:#222;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:32px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    font-size:16px;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:var(--maxw);
+    background:var(--card);
+    border-radius:18px;
+    box-shadow:var(--drop);
+    overflow:hidden;
+    display:grid;
+    grid-template-columns: 360px 1fr;
+    gap:0;
+    align-items:stretch;
+  }
+
+  @media (max-width:900px){
+    .wrap{grid-template-columns:1fr; padding-bottom:0}
+  }
+
+  /* Left column (profile) */
+  .profile {
+    background: linear-gradient(180deg, rgba(139,43,31,0.06), rgba(47,79,47,0.03));
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    align-items:center;
+    text-align:center;
+  }
+  .svg-portrait{
+    width:220px;
+    height:220px;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    background:linear-gradient(180deg,#fff7f5,#fffaf9);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+
+  /* simple ear-perk animation when "alert" class toggled */
+  .ear{ transform-origin: center bottom; transition: transform 300ms ease; }
+  .alert .ear-left{ transform: rotate(-12deg) translateY(-6px); }
+  .alert .ear-right{ transform: rotate(12deg) translateY(-6px); }
+
+  h1{font-size:1.6rem; margin:0; letter-spacing: -0.01em}
+  .subtitle{color:var(--muted); font-size:0.95rem; margin-top:2px}
+  .meta{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+    color:var(--muted);
+    font-size:0.92rem;
+  }
+  .badge{
+    background:linear-gradient(90deg, rgba(139,43,31,0.08), rgba(47,79,47,0.04));
+    padding:6px 10px;
+    border-radius:999px;
+    font-weight:600;
+    color:var(--accent);
+    font-size:0.88rem;
+  }
+
+  /* Right column (content) */
+  .content{
+    padding:28px 32px;
+  }
+  .section{
+    margin-bottom:18px;
+    padding:18px;
+    border-radius:12px;
+    background:linear-gradient(180deg, rgba(250,250,250,0.7), rgba(250,250,250,0.5));
+    box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+  }
+  .section h2{
+    margin:0 0 8px 0;
+    font-size:1.05rem;
+    color:#111;
+  }
+  .section p{margin:0; color:var(--muted); line-height:1.45}
+  .timeline{
+    display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;
+  }
+  .chip{
+    background:#fff; border:1px solid #eee; padding:8px 12px; border-radius:10px; font-size:0.92rem; color:var(--muted);
+  }
+
+  .gallery{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:8px;
+    margin-top:12px;
+  }
+  @media (max-width:520px){ .gallery{grid-template-columns:repeat(2,1fr)} }
+
+  .photo{
+    background:linear-gradient(180deg,#fff,#fafafa);
+    height:96px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#888;
+    font-size:0.9rem;
+    overflow:hidden;
+    border:1px solid #eee;
+  }
+
+  .cta-row{
+    display:flex;
+    gap:12px;
+    margin-top:14px;
+    align-items:center;
+  }
+  .btn{
+    background:var(--accent);
+    color:white;
+    padding:10px 14px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    box-shadow:0 6px 16px rgba(139,43,31,0.12);
+  }
+  .btn.secondary{
+    background:transparent;
+    color:var(--accent);
+    border:1px solid rgba(139,43,31,0.12);
+    box-shadow:none;
+  }
+  footer{font-size:0.85rem; color:var(--muted); text-align:center; margin-top:8px}
+
+  /* small utility */
+  .muted{color:var(--muted)}
+  .center{display:flex;align-items:center;justify-content:center}
+  .pill{padding:6px 10px;border-radius:999px;background:#fff;border:1px solid #eee}
+  .grow{flex:1}
+
+  /* print friendly */
+  @media print{
+    body{background:white;padding:0}
+    .wrap{box-shadow:none;border-radius:0}
+    .svg-portrait{box-shadow:none}
+  }
+</style>
 </head>
 <body>
-    <header class="hero">
-        <div class="overlay"></div>
-        <div class="hero-content">
-            <h1>Athena Devika</h1>
-            <p>The Sweetest Sidekick & Beloved Family Pup</p>
+  <main class="wrap" role="main" aria-labelledby="pageTitle">
+    <!-- Left column: profile + portrait -->
+    <aside class="profile" aria-label="Athena Devika profile">
+      <div class="svg-portrait" id="portraitRoot" title="Athena Devika portrait (svg placeholder)">
+        <!-- Inline SVG portrait placeholder: stylized dog with floppy ears -->
+        <svg viewBox="0 0 240 240" width="200" height="200" role="img" aria-label="Illustration of Athena Devika">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0%" stop-color="#a73b2c"/>
+              <stop offset="100%" stop-color="#7f261d"/>
+            </linearGradient>
+          </defs>
+
+          <!-- body -->
+          <ellipse cx="120" cy="150" rx="72" ry="52" fill="url(#g1)" opacity="0.98"/>
+          <!-- head -->
+          <circle cx="120" cy="94" r="44" fill="#8b2b1f"/>
+          <!-- muzzle -->
+          <ellipse cx="128" cy="108" rx="24" ry="16" fill="#6a1c15"/>
+          <!-- nose -->
+          <ellipse cx="128" cy="104" rx="6" ry="4" fill="#121212"/>
+          <!-- eyes -->
+          <ellipse cx="110" cy="88" rx="6" ry="4" fill="#1e1e1e"/>
+          <ellipse cx="136" cy="88" rx="6" ry="4" fill="#1e1e1e"/>
+          <!-- floppy ears -->
+          <g id="ears" class="">
+            <path class="ear ear-left" d="M84 70 C64 86, 62 114, 92 120" fill="#6a1c15" stroke="#5a1511" stroke-width="1"/>
+            <path class="ear ear-right" d="M156 70 C176 86, 178 114, 148 120" fill="#6a1c15" stroke="#5a1511" stroke-width="1"/>
+          </g>
+
+          <!-- tail (simple curve) -->
+          <path d="M190 150 C220 130, 230 120, 232 106" stroke="#7f261d" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.95"/>
+          <!-- subtle highlight -->
+          <ellipse cx="106" cy="82" rx="10" ry="4" fill="rgba(255,255,255,0.07)"/>
+        </svg>
+      </div>
+
+      <h1 id="pageTitle">Athena Devika</h1>
+      <div class="subtitle">German Shepherd × Rottweiler — family, traveler, cuddle expert</div>
+
+      <div class="meta" aria-hidden="false">
+        <span class="badge">Adopted 2019</span>
+        <span class="pill">Seattle • Oregon • Idaho</span>
+      </div>
+
+      <div style="font-size:0.9rem;color:var(--muted);margin-top:10px">
+        <strong>Favorite things:</strong>
+        <div class="muted" style="margin-top:6px">Long walks, car rides (used to!), heavy tail wags, awkward cuddles.</div>
+      </div>
+
+      <div class="cta-row" style="margin-top:auto">
+        <a class="btn" href="#story">Her story</a>
+        <a class="btn secondary" href="#gallery">Gallery</a>
+      </div>
+    </aside>
+
+    <!-- Right column: content -->
+    <section class="content" aria-label="Athena Devika content">
+      <article class="section" id="story" aria-labelledby="storyTitle">
+        <h2 id="storyTitle">How she joined our family</h2>
+        <p>
+          We adopted Athena as a birthday companion for my husband when she was about four months old — she quickly became my sidekick.
+          We brought her home in 2019, less than a year after we were married. She's been part of the family ever since and a favorite of everyone.
+        </p>
+
+        <div class="timeline" aria-hidden="true" style="margin-top:12px">
+          <div class="chip">Adopted — 2019</div>
+          <div class="chip">Traveled: Seattle • OR • ID</div>
+          <div class="chip">Training buddy — Army endurance runs</div>
         </div>
-    </header>
+      </article>
 
-    <main>
-        <section class="about">
-            <h2>About Athena</h2>
-            <p>Athena Devika is our loyal and loving German Shepherd–Rottweiler mix. We adopted her in 2019 when she was just a four-month-old puppy—a birthday gift for my husband that quickly became my constant companion. With the strong build and deep red coloring of a Rottweiler and the soulful face and fur of a German Shepherd, she’s the perfect blend of both breeds. Her floppy ears perk up when she’s curious or on alert—it’s the cutest thing!</p>
-        </section>
+      <article class="section" id="personality" aria-labelledby="personTitle">
+        <h2 id="personTitle">Personality & quirks</h2>
+        <p>
+          Athena is the sweetest girl with a surprisingly deep bark and an intimidating stance — though she's never acted on it. When strangers approach, her strongest
+          tail wag often sways her whole body. She sleeps in the goofiest positions (legs up, curved in a loose C) and once tucked herself halfway under the bed
+          under a blanket in such a deep sleep that we thought she was missing.
+        </p>
+      </article>
 
-        <section class="story">
-            <h2>Our Journey Together</h2>
-            <p>Athena has been part of our lives since just after my husband and I got married. Before I had kids and ran out of space in my car, she went *everywhere* with me. Together, we’ve explored Seattle, Oregon, and Idaho. She even traveled through a bad storm in Grants Pass, Oregon—her calm strength kept me grounded through it all.</p>
-            <p>She’s also been my running partner, keeping pace with me through miles of Army endurance test training. No matter the distance, she was always ready with boundless energy and her signature wagging tail that could move mountains (or at least the couch cushions).</p>
-        </section>
+      <article class="section" id="adventures" aria-labelledby="advTitle">
+        <h2 id="advTitle">Adventures & resilience</h2>
+        <p>
+          Athena has been through storms with me — one bad storm through Grants Pass, OR stands out — and was my rock through it all. She has run and walked miles as I trained
+          for Army endurance tests, and even now as she grays around the snout and gains a little weight, her energy and spirit remain timeless.
+        </p>
+      </article>
 
-        <section class="traits">
-            <h2>Personality & Quirks</h2>
-            <ul>
-                <li><strong>Heart of Gold:</strong> She’s gentle, affectionate, and fiercely loyal.</li>
-                <li><strong>Protective Yet Playful:</strong> Her bark might sound tough, but her tail wag gives her away every time.</li>
-                <li><strong>Legendary Sleeper:</strong> Known for sleeping in the most awkward angles—legs up, twisted like a C, sometimes half under the bed.</li>
-                <li><strong>Growing Older, Not Slower:</strong> She’s starting to gray around her snout but still has that same puppy energy and sparkle in her eyes.</li>
-            </ul>
-        </section>
+      <article class="section" id="gallery" aria-labelledby="galTitle">
+        <h2 id="galTitle">Gallery</h2>
+        <p class="muted" style="margin-top:6px">Replace these placeholders with your favorite photos (see comments in the HTML to learn where).</p>
+        <div class="gallery" role="list">
+          <div class="photo" role="listitem" aria-label="Photo placeholder 1">Photo 1</div>
+          <div class="photo" role="listitem" aria-label="Photo placeholder 2">Photo 2</div>
+          <div class="photo" role="listitem" aria-label="Photo placeholder 3">Photo 3</div>
+          <div class="photo" role="listitem" aria-label="Photo placeholder 4">Photo 4</div>
+          <div class="photo" role="listitem" aria-label="Photo placeholder 5">Photo 5</div>
+          <div class="photo" role="listitem" aria-label="Photo placeholder 6">Photo 6</div>
+        </div>
+      </article>
 
-        <section class="photo">
-            <h2>Her Portrait</h2>
-            <!-- Replace this file with your own dog’s photo -->
-            <img src="athena.jpg" alt="Athena Devika, German Shepherd Rottweiler mix">
-            <p><em>This portrait captures Athena’s spirit—strong, warm, and full of love.</em></p>
-        </section>
-    </main>
-    <footer>
-        <p>Made with ❤️ for Athena Devika — Our Best Girl</p>
-    </footer>
+      <article class="section" id="fun" aria-labelledby="funTitle">
+        <h2 id="funTitle">Fun facts</h2>
+        <ul style="margin:8px 0 0 18px; color:var(--muted)">
+          <li>Floppy ears that perk up when she's on alert — it's her cutest expression.</li>
+          <li>Deep red coat and rottweiler body with a German shepherd face and hair.</li>
+          <li>Terrible guard dog (loves everyone) — but great at cuddles and emotional support.</li>
+          <li>Once went halfway under the bed during a deep nap and disappeared from sight.</li>
+        </ul>
+      </article>
+
+      <footer class="section" style="text-align:left">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div style="flex:1">
+            <strong>Want to customize?</strong>
+            <div class="muted" style="font-size:0.92rem;margin-top:6px">
+              To replace the SVG portrait, swap the <code>&lt;svg&gt;</code> inside <code>#portraitRoot</code> with an &lt;img src="YOURPHOTO.jpg"&gt;.
+              To replace gallery placeholders, add &lt;img src="...jpg" alt="..."&gt; elements inside each <code>.photo</code>.
+            </div>
+          </div>
+
+          <div style="min-width:220px">
+            <a class="btn" href="#" onclick="toggleAlert();return false;">Toggle 'Alert' Ears</a>
+            <a class="btn secondary" href="#" onclick="downloadText();return false;">Download Bio</a>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;color:var(--muted);font-size:0.9rem">
+          © Athena Devika — loved by Griselda & family
+        </div>
+      </footer>
+    </section>
+  </main>
+
+<script>
+  // Small interactive bits: ear perk toggle + "download" of the short bio text
+  const portrait = document.getElementById('portraitRoot');
+
+  function toggleAlert(){
+    portrait.classList.toggle('alert');
+  }
+
+  // Build a short bio and prompt user to download a .txt file
+  function downloadText(){
+    const bio = [
+      'Athena Devika',
+      '',
+      'Adopted: 2019 (birthday gift that became a sidekick)',
+      'Breed: German Shepherd × Rottweiler',
+      'Loves: long walks, cuddles, car rides (was a pro), tail wags',
+      'Notable: traveled between Seattle, Oregon, Idaho; ran miles with owner during endurance training; keeps a deep bark but is a huge softie.',
+      '',
+      'Family: loved by Griselda, husband, and extended family.'
+    ].join('\\n');
+
+    const blob = new Blob([bio], {type:'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'athena-devika-bio.txt';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>{
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 300);
+  }
+
+  // Accessibility: keyboard shortcut "a" toggles ears alert for fun
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'a' || e.key === 'A'){
+      toggleAlert();
+    }
+  });
+</script>
 </body>
 </html>
