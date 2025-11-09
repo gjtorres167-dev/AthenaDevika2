@@ -1,90 +1,111 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Raleway:wght@300;500&display=swap');
 
 body {
-    margin: 0;
-    font-family: 'Raleway', sans-serif;
-    color: #f4f4f4;
-    background-color: #1f1f1f;
-    background-image: url('https://www.transparenttextures.com/patterns/dark-wood.png');
-    line-height: 1.7;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  color: #f1f1f1;
+  background: #2e2a28 url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+  background-attachment: fixed;
+  background-size: cover;
+  line-height: 1.7;
 }
 
-header.hero {
-    position: relative;
-    background: .jpg(vaibhav-chauhan-vjUzLUx5KvA-unsplash.jpg) center/cover no-repeat;
-    height: 65vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
+header {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  padding: 6rem 1rem 5rem;
+  background: linear-gradient(to bottom right, #2d2d2d, #3f3b36);
 }
 
-.hero .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(30, 40, 30, 0.6);
+header .overlay {
+  position: absolute;
+  inset: 0;
+  background: url('https://www.transparenttextures.com/patterns/black-linen.png');
+  opacity: 0.5;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 1;
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin: 0;
+  position: relative;
+  z-index: 2;
 }
 
-.hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    color: #d3c7a6;
+header p {
+  font-size: 1.2rem;
+  position: relative;
+  z-index: 2;
+  color: #c9a96a;
 }
 
 main {
-    padding: 2.5rem 10%;
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1rem;
 }
 
 section {
-    margin-bottom: 2.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  margin-bottom: 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  backdrop-filter: blur(4px);
 }
 
 h2 {
-    font-family: 'Playfair Display', serif;
-    color: #d3c7a6;
-    border-bottom: 1px solid rgba(211, 199, 166, 0.4);
-    padding-bottom: 0.3rem;
-    margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+  color: #c9a96a;
+  margin-top: 0;
+}
+
+.intro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+}
+
+.portrait {
+  flex: 1 1 300px;
+  border-radius: 12px;
+  max-width: 100%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: transform 0.4s ease;
+}
+
+.portrait:hover {
+  transform: scale(1.03);
+}
+
+.text {
+  flex: 2 1 400px;
 }
 
 ul {
-    list-style-type: "🐾 ";
-    padding-left: 1.5rem;
+  list-style: none;
+  padding-left: 0;
 }
 
-.photo img {
-    width: 100%;
-    max-width: 700px;
-    display: block;
-    margin: 1rem auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+ul li {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+ul li::before {
+  content: "🐾";
+  position: absolute;
+  left: 0;
 }
 
 footer {
-    text-align: center;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.7);
-    color: #d3c7a6;
-    font-size: 0.9rem;
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+  color: #b4b4b4;
+  background: #1f1b19;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
-
-
