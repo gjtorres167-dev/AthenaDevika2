@@ -72,12 +72,16 @@ h2 {
   flex: 1 1 300px;
   border-radius: 12px;
   max-width: 100%;
+  height: auto; /* keeps the aspect ratio */
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   transition: transform 0.4s ease;
+  object-fit: cover; /* prevents distortion */
+  display: block;
+  margin: 0 auto;
 }
 
 .portrait:hover {
-  transform: scale(1.03);
+  transform: scale(1.03); /* subtle hover effect */
 }
 
 .text {
