@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&family=Playfair+Display:wght@600&display=swap');
+
 
 body {
     margin: 0;
@@ -11,7 +11,7 @@ body {
 
 header.hero {
     position: relative;
-    background: url(vaibhav-chauhan-vjUzLUx5KvA-unsplash.jpg) center/cover no-repeat;
+    background: .jpg(vaibhav-chauhan-vjUzLUx5KvA-unsplash.jpg) center/cover no-repeat;
     height: 65vh;
     display: flex;
     align-items: center;
@@ -86,4 +86,5 @@ footer {
     color: #d3c7a6;
     font-size: 0.9rem;
 }
+
 
